@@ -17,6 +17,7 @@ class FrobeniusNMF() :
             self.H = np.random.rand(self.r, self.ncols)
         self.w_hist = []
         self.h_hist = []
+        self.V_hist = []
         return
 
     def update_h(self) :
@@ -30,6 +31,7 @@ class FrobeniusNMF() :
 
     def update_w(self) :
         self.w_hist.append(self.W)
+        self.V_hist.append(self.W @ self.H)
         vh = self.V @ self.H.T
         whh = self.W @ self.H @ self.H.T
         for i in range(self.W.shape[0]):

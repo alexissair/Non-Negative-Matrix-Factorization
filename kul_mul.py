@@ -18,6 +18,7 @@ class KullbachNMF(FrobeniusNMF) :
     def update_w(self) :
         self.w_hist.append(self.W)
         wh = self.W @ self.H
+        self.V_hist.append(wh)
         for i in range(self.W.shape[0]):
             for a in range(self.W.shape[1]) :
                 s = 0
