@@ -11,7 +11,7 @@ class FrobeniusNMF() :
             self.W = W_init
         else :
             self.W = np.random.rand(self.nrows, self.r)
-        if H_init :
+        if H_init:
             self.H = H_init
         else :
             self.H = np.random.rand(self.r, self.ncols)
