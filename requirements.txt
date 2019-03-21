@@ -2,3 +2,4 @@ scipy
 matplotlib
 numpy
 jupyter
+pandas
