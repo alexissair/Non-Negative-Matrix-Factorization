@@ -8,13 +8,13 @@ class SimplexNMF():
             self.f = f
             self.n = n
             F = np.random.random((f, r))
-            F = SimplexNMF.norm_rows_to_one(F)
+            self.F_init = SimplexNMF.norm_rows_to_one(F)
             W = np.random.random((r, n))
-            W = SimplexNMF.norm_rows_to_one(W)
+            self.W_init = SimplexNMF.norm_rows_to_one(W)
             self.X = F @ W
         else:
             self.f, self.n = X.shape
-            self.X = X
+            self.X = SimplexNMF.norm_rows_to_one(X)
 
     @staticmethod
     def norm_rows_to_one(matrix):
@@ -93,6 +93,5 @@ class SimplexNMF():
         self.F = self.c[:, index]
 
     def check_result(self):
-        print('||CX - X|| = {}'.format(np.sum(np.square(self.c @ self.X - self.X))))
-        print('diag(C) = {}'.format(np.diag(self.c)))
-        print('||FW - X|| = {}'.format(np.sum(np.square(self.F @ self.W - self.X))))
+        print('||CX - X|| = {}'.format(np.sqrt(np.sum(np.square(self.c @ self.X - self.X)))))
+        print('||FW - X|| = {}'.format(np.sqrt(np.sum(np.square(self.F @ self.W - self.X)))))
